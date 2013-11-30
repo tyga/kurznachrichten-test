@@ -1,6 +1,8 @@
 package de.htw_berlin.f4.ai.kbe.kurznachrichten;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -25,6 +27,7 @@ public class TestShortMessageServiceInit {
 //	protected static final String TOPIC_GLOBAL = "global";
 	protected static final String MESSAGE_CONTENT = "message content";
 	protected static final String MESSAGE_VALID = "this is a valid message";
+
 	
 	public static String USER_NAME = "kinmin";
 	public static String CITY = "honeynut";
@@ -43,7 +46,7 @@ public class TestShortMessageServiceInit {
 
 	@Before
 	public void setUp() {
-
+//		sms = new ShortMessageServiceImpl();
 	}
 
 	@After
