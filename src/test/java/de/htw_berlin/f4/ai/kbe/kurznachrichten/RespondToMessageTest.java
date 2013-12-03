@@ -1,6 +1,7 @@
 package de.htw_berlin.f4.ai.kbe.kurznachrichten;
 
 import org.junit.After;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,7 +33,8 @@ public class RespondToMessageTest extends TestShortMessageServiceInit {
 	
 	@Test
 	public void respondToMessageTestValidArguments() {
-		sms.respondToMessage(USER_NAME, "Response", PREDECESSOR);
+		Long msgId = sms.respondToMessage(USER_NAME, "Response", PREDECESSOR);
+		assertNotNull(msgId);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
