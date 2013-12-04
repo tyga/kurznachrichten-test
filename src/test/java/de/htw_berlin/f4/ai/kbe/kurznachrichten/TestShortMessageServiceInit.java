@@ -32,6 +32,10 @@ public class TestShortMessageServiceInit {
 	protected static String STR_LENGTH_10;
 	protected static String STR_LENGTH_9;
 	protected static String STR_LENGTH_11;
+	protected static String STR_LENGTH_30;
+	protected static String STR_LENGTH_31;
+	protected static String STR_LENGTH_4;
+	protected static String STR_LENGTH_3;
 	
 	protected static long userIdCounter;
 	
@@ -79,17 +83,25 @@ public class TestShortMessageServiceInit {
 		STR_LENGTH_256 = stringCreator(256);
 		STR_LENGTH_255 = stringCreator(255);
 		STR_LENGTH_254 = stringCreator(254);
+		STR_LENGTH_31 = stringCreator(31);
+		STR_LENGTH_30 = stringCreator(30);
 		STR_LENGTH_11 = stringCreator(11);
 		STR_LENGTH_10 = stringCreator(10);
 		STR_LENGTH_9 = stringCreator(9);
+		STR_LENGTH_4 = stringCreator(4);
+		STR_LENGTH_3 = stringCreator(3);
 		
 		// verify strings
 		assertEquals(256, STR_LENGTH_256.length());
 		assertEquals(255, STR_LENGTH_255.length());
 		assertEquals(254, STR_LENGTH_254.length());
+		assertEquals(31, STR_LENGTH_31.length());
+		assertEquals(30, STR_LENGTH_30.length());
 		assertEquals(11, STR_LENGTH_11.length());
 		assertEquals(10, STR_LENGTH_10.length());
 		assertEquals(9, STR_LENGTH_9.length());
+		assertEquals(4, STR_LENGTH_4.length());
+		assertEquals(3, STR_LENGTH_3.length());
 	}
 	
 	@AfterClass
