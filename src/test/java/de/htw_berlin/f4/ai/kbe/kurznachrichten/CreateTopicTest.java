@@ -18,7 +18,7 @@ public class CreateTopicTest extends TestShortMessageServiceInit {
 	public static final String STR_LENGTH_71 = "THIS TOPIC IS TOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO LONG";
 	public static final String STR_LENGTH_1 = "T";
 	
-	public ShortMessageService sms;
+//	public ShortMessageService sms;
 
 	// /////////////////////////////////////////////////////
 	// setup and tear down
@@ -32,15 +32,18 @@ public class CreateTopicTest extends TestShortMessageServiceInit {
 	}
 
 	@Before
+	@Override
 	public void setUp() {
-		sms = new ShortMessageServiceImpl();
-		sms.createUser(USER_NAME, CITY);
-		sms.createTopic(USER_NAME, TOPIC);
+		super.setUp();
+//		sms = new ShortMessageServiceImpl();
+//		sms.createUser(USER_NAME, CITY);
+//		sms.createTopic(USER_NAME, TOPIC);
 	}
 
 	@After
+	@Override
 	public void tearDown() {
-
+		super.tearDown();
 	}
 
 	// /////////////////////////////////////////////////////

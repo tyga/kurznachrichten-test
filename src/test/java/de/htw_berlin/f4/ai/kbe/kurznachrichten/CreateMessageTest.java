@@ -8,28 +8,31 @@ import org.junit.Test;
 
 public class CreateMessageTest extends TestShortMessageServiceInit {
 
-	public static String USER_NAME = "kinmin";
-	public static String CITY = "honeynut";
-	public static String TOPIC = "Kinmins new Smart Home";
-	public static String USER_NAME_NOT_EXISTING = "notexists";
-	public static String TOPIC_NOT_EXISTING = "This topic is not existing";
+//	public static String USER_NAME = "kinmin";
+//	public static String CITY = "honeynut";
+//	public static String TOPIC = "Kinmins new Smart Home";
+//	public static String USER_NAME_NOT_EXISTING = "notexists";
+//	public static String TOPIC_NOT_EXISTING = "This topic is not existing";
 	
-	private ShortMessageService sms;
+//	private ShortMessageService sms;
 
 	// /////////////////////////////////////////////////////
 	// setup and tear down
 	// /////////////////////////////////////////////////////
 
 	@Before
+	@Override
 	public void setUp() {
-		sms = new ShortMessageServiceImpl();
-		sms.createUser(USER_NAME, CITY);
-		sms.createTopic(USER_NAME, TOPIC);
+		super.setUp();
+//		sms = new ShortMessageServiceImpl();
+//		sms.createUser(USER_NAME, CITY);
+//		sms.createTopic(USER_NAME, TOPIC);
 	}
 
 	@After
+	@Override
 	public void tearDown() {
-		
+		super.tearDown();
 	}
 
 	// /////////////////////////////////////////////////////
@@ -40,7 +43,7 @@ public class CreateMessageTest extends TestShortMessageServiceInit {
 	public void createMessageTestValidArguments() {
 		// creating user before
 		Long id1 = sms.createMessage(USER_NAME, STR_LENGTH_255, TOPIC);
-		Long id2 = sms.createMessage(USER_NAME, MESSAGE_VALID, TOPIC);
+		Long id2 = sms.createMessage(USER_NAME, MESSAGE_VALID2, TOPIC);
 		assertNotNull(id1);
 		assertNotNull(id2);
 	}
@@ -67,7 +70,7 @@ public class CreateMessageTest extends TestShortMessageServiceInit {
 
 	@Test(expected = NullPointerException.class)
 	public void createMessageTestUsernameNull() {
-		sms.createMessage(null, MESSAGE_CONTENT, TOPIC);
+		sms.createMessage(null, MESSAGE_VALID1, TOPIC);
 	}
 
 	@Test(expected = NullPointerException.class)
@@ -77,6 +80,6 @@ public class CreateMessageTest extends TestShortMessageServiceInit {
 
 	@Test(expected = NullPointerException.class)
 	public void createMessageTestTopicNull() {
-		sms.createMessage(USER_NAME, MESSAGE_CONTENT, null);
+		sms.createMessage(USER_NAME, MESSAGE_VALID1, null);
 	}
 }

@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class RespondToMessageTest extends TestShortMessageServiceInit {
 
-	public ShortMessageService sms;
+//	public ShortMessageService sms;
 	public Long PREDECESSOR;
 	
 	// /////////////////////////////////////////////////////
@@ -15,16 +15,19 @@ public class RespondToMessageTest extends TestShortMessageServiceInit {
 	// /////////////////////////////////////////////////////
 
 	@Before
+	@Override
 	public void setUp() {
-		sms = new ShortMessageServiceImpl();
-		sms.createUser(USER_NAME, CITY);
-		sms.createTopic(USER_NAME, TOPIC);
-		PREDECESSOR = sms.createMessage(USER_NAME, MESSAGE_VALID, TOPIC);
+		super.setUp();
+//		sms = new ShortMessageServiceImpl();
+//		sms.createUser(USER_NAME, CITY);
+//		sms.createTopic(USER_NAME, TOPIC);
+		PREDECESSOR = sms.createMessage(USER_NAME, MESSAGE_VALID2, TOPIC);
 	}
 	
 	@After
+	@Override
 	public void tearDown() {
-		sms.deleteUser(USER_NAME);
+		super.tearDown();
 	}
 	
 	// /////////////////////////////////////////////////////
@@ -49,12 +52,12 @@ public class RespondToMessageTest extends TestShortMessageServiceInit {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void respondToMessageTestUserNotExisting() {
-		sms.respondToMessage(USER_NAME_NOT_EXISTING, MESSAGE_VALID, PREDECESSOR);
+		sms.respondToMessage(USER_NAME_NOT_EXISTING, MESSAGE_VALID2, PREDECESSOR);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void respondToMessageTestPredecessorNotExisting() {
-		sms.respondToMessage(USER_NAME, MESSAGE_VALID, PREDECESSOR + 1);
+		sms.respondToMessage(USER_NAME, MESSAGE_VALID2, PREDECESSOR + 1);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -65,7 +68,7 @@ public class RespondToMessageTest extends TestShortMessageServiceInit {
 	
 	@Test(expected = NullPointerException.class)
 	public void respondToMessageTestUserNameNull() {
-		sms.respondToMessage(null, MESSAGE_VALID, PREDECESSOR);
+		sms.respondToMessage(null, MESSAGE_VALID2, PREDECESSOR);
 	}
 	
 	@Test(expected = NullPointerException.class)
@@ -75,6 +78,6 @@ public class RespondToMessageTest extends TestShortMessageServiceInit {
 	
 	@Test(expected = NullPointerException.class)
 	public void respondToMessageTestPredecessorNull() {
-		sms.respondToMessage(USER_NAME, MESSAGE_VALID, null);
+		sms.respondToMessage(USER_NAME, MESSAGE_VALID2, null);
 	}
 }

@@ -3,11 +3,12 @@ package de.htw_berlin.f4.ai.kbe.kurznachrichten;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class DeleteMessageTest extends TestShortMessageServiceInit {
 
-	public ShortMessageService sms;
+//	public ShortMessageService sms;
 	public Long PREDECESSOR;
 
 	// /////////////////////////////////////////////////////
@@ -15,17 +16,19 @@ public class DeleteMessageTest extends TestShortMessageServiceInit {
 	// /////////////////////////////////////////////////////
 
 	@Before
+	@Override
 	public void setUp() {
 		super.setUp();
-		sms = new ShortMessageServiceImpl();
-		sms.createUser(USER_NAME, CITY);
-		sms.createTopic(USER_NAME, TOPIC);
-		PREDECESSOR = sms.createMessage(USER_NAME, MESSAGE_VALID, TOPIC);
+//		sms = new ShortMessageServiceImpl();
+//		sms.createUser(USER_NAME, CITY);
+//		sms.createTopic(USER_NAME, TOPIC);
+		PREDECESSOR = sms.createMessage(USER_NAME, MESSAGE_VALID2, TOPIC);
 	}
 
 	@After
+	@Override
 	public void tearDown() {
-
+		super.tearDown();
 	}
 
 	// /////////////////////////////////////////////////////
@@ -48,7 +51,7 @@ public class DeleteMessageTest extends TestShortMessageServiceInit {
 	@Test(expected = IllegalArgumentException.class)
 	public void deleteMessageTestIsNoOrigin()
 			throws AuthorizationException {
-		Long preNoOrigin = sms.respondToMessage(USER_NAME, MESSAGE_VALID, PREDECESSOR);
+		Long preNoOrigin = sms.respondToMessage(USER_NAME, MESSAGE_VALID2, PREDECESSOR);
 		sms.deleteMessage(USER_NAME, preNoOrigin);
 	}
 

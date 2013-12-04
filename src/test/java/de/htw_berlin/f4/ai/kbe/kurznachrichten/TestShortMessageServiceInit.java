@@ -1,32 +1,17 @@
 package de.htw_berlin.f4.ai.kbe.kurznachrichten;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.AfterClass;
-
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.BeforeClass;
 
 public class TestShortMessageServiceInit {
 
-	// protected static final String USER_NOT_EXISTING = "dummy_user";
-	// protected static final String TOPIC_NOT_EXISTING = "dummy_topic";
-	// protected static final String
-
-//	protected static final String USER_ADMIN = "admin";
-//	protected static final String USER_CITY = "München";
-//	protected static final String TOPIC_GLOBAL = "global";
-	protected static final String MESSAGE_CONTENT = "message content";
-	protected static final String MESSAGE_VALID = "this is a valid message";
+	
+	protected static final String MESSAGE_VALID1 = "message content";
+	protected static final String MESSAGE_VALID2 = "this is a valid message";
 
 	
 	public static String USER_NAME = "kinmin";
@@ -42,11 +27,13 @@ public class TestShortMessageServiceInit {
 	protected static String STR_LENGTH_9;
 	protected static String STR_LENGTH_11;
 
-//	protected static ShortMessageService sms;
+	protected static ShortMessageService sms;
 
 	@Before
 	public void setUp() {
-//		sms = new ShortMessageServiceImpl();
+		sms = new ShortMessageServiceImpl();
+		sms.createUser(USER_NAME, CITY);
+		sms.createTopic(USER_NAME, TOPIC);
 	}
 
 	@After
