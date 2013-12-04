@@ -8,8 +8,7 @@ import static org.junit.Assert.*;
 
 public class DeleteMessageTest extends TestShortMessageServiceInit {
 
-//	public ShortMessageService sms;
-	public Long PREDECESSOR;
+	private Long PREDECESSOR;
 
 	// /////////////////////////////////////////////////////
 	// setup and tear down
@@ -19,9 +18,6 @@ public class DeleteMessageTest extends TestShortMessageServiceInit {
 	@Override
 	public void setUp() {
 		super.setUp();
-//		sms = new ShortMessageServiceImpl();
-//		sms.createUser(USER_NAME, CITY);
-//		sms.createTopic(USER_NAME, TOPIC);
 		PREDECESSOR = sms.createMessage(USER_NAME, MESSAGE_VALID2, TOPIC);
 	}
 

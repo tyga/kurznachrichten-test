@@ -50,8 +50,6 @@ public class TestShortMessageServiceInit {
 		STR_LENGTH_10 = stringCreator(10);
 		STR_LENGTH_9 = stringCreator(9);
 
-//		sms = new ShortMessageServiceImpl();
-
 		// verify strings
 		assertEquals(256, STR_LENGTH_256.length());
 		assertEquals(255, STR_LENGTH_255.length());

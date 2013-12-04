@@ -8,14 +8,6 @@ import org.junit.Test;
 
 public class CreateMessageTest extends TestShortMessageServiceInit {
 
-//	public static String USER_NAME = "kinmin";
-//	public static String CITY = "honeynut";
-//	public static String TOPIC = "Kinmins new Smart Home";
-//	public static String USER_NAME_NOT_EXISTING = "notexists";
-//	public static String TOPIC_NOT_EXISTING = "This topic is not existing";
-	
-//	private ShortMessageService sms;
-
 	// /////////////////////////////////////////////////////
 	// setup and tear down
 	// /////////////////////////////////////////////////////
@@ -24,9 +16,7 @@ public class CreateMessageTest extends TestShortMessageServiceInit {
 	@Override
 	public void setUp() {
 		super.setUp();
-//		sms = new ShortMessageServiceImpl();
-//		sms.createUser(USER_NAME, CITY);
-//		sms.createTopic(USER_NAME, TOPIC);
+
 	}
 
 	@After

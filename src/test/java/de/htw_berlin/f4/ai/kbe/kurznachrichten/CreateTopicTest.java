@@ -35,9 +35,6 @@ public class CreateTopicTest extends TestShortMessageServiceInit {
 	@Override
 	public void setUp() {
 		super.setUp();
-//		sms = new ShortMessageServiceImpl();
-//		sms.createUser(USER_NAME, CITY);
-//		sms.createTopic(USER_NAME, TOPIC);
 	}
 
 	@After
