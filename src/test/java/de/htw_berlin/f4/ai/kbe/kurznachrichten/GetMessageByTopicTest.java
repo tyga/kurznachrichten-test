@@ -90,7 +90,7 @@ public class GetMessageByTopicTest {
 	
 	@Test
 	public void getMessageByTopicTestDateTest(){
-		Date now = new Date(System.currentTimeMillis());
+		Date now = Calendar.getInstance().getTime();
 		try {
 			Thread.sleep(2);
 		} catch (InterruptedException e) {
@@ -130,6 +130,7 @@ public class GetMessageByTopicTest {
 	@Test
 	public void getMessageByTopicTestNoMessages(){
 		List<List<String>> threads1 = new ArrayList<List<String>>();
+		//TODO statt Date d null übergeben
 		assertNotNull(sms.getMessageByTopic("thisTopicDoesNotHaveAnyMessages", d));
 		assertEquals(threads1, sms.getMessageByTopic("thisTopicDoesNotHaveAnyMessages", d));
 	}

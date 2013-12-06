@@ -15,6 +15,7 @@ public class GetUsersTest {
 		
 	private ShortMessageService sms;
 	private String city = "irgendwo";
+	//TODO user mit new erzeugen!
 	private User user1;
 	private User user2;
 	private User user3;
