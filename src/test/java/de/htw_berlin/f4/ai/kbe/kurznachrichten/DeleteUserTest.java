@@ -8,7 +8,10 @@ public class DeleteUserTest {
 	// deleteUserTests
 	// /////////////////////////////////////////////////////
 		
+	//TODO ShortMessageService erben
 	private ShortMessageService sms;
+	
+	
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void deleteUserTestNameDoesNotExist(){

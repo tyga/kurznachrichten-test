@@ -31,6 +31,7 @@ public class GetMessageByTopicTest {
 	  c.set(Calendar.SECOND, 0);
 	  c.set(Calendar.MILLISECOND, 0);
 	  d = c.getTime();
+	  //TODO verwende Konstanten (mind.) wenn namen mehrfach vorkommen
 	  sms.createUser("user1", "berlin");
 	  sms.createTopic("user1", "topic1");
 	  sms.createTopic("user1", "topic2");
@@ -89,7 +90,7 @@ public class GetMessageByTopicTest {
 	
 	@Test
 	public void getMessageByTopicTestDateTest(){
-		Date now = new Date(System.currentTimeMillis());
+		Date now = Calendar.getInstance().getTime();
 		try {
 			Thread.sleep(2);
 		} catch (InterruptedException e) {
@@ -129,6 +130,7 @@ public class GetMessageByTopicTest {
 	@Test
 	public void getMessageByTopicTestNoMessages(){
 		List<List<String>> threads1 = new ArrayList<List<String>>();
+		//TODO statt Date d null übergeben
 		assertNotNull(sms.getMessageByTopic("thisTopicDoesNotHaveAnyMessages", d));
 		assertEquals(threads1, sms.getMessageByTopic("thisTopicDoesNotHaveAnyMessages", d));
 	}
