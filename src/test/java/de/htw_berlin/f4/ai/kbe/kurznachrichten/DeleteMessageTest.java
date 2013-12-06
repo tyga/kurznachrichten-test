@@ -1,14 +1,18 @@
 package de.htw_berlin.f4.ai.kbe.kurznachrichten;
 
+import static org.junit.Assert.*;
+
+import java.util.Calendar;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class DeleteMessageTest extends TestShortMessageServiceInit {
 
 	private Long PREDECESSOR;
+	private Calendar date = Calendar.getInstance();
 
 	// /////////////////////////////////////////////////////
 	// setup and tear down
@@ -34,7 +38,13 @@ public class DeleteMessageTest extends TestShortMessageServiceInit {
 	@Test
 	public void deleteMessageTestValidArguments() throws AuthorizationException {
 		sms.respondToMessage(USER_NAME, "This is a response...", PREDECESSOR);
+		//verify that there is message
+		List<List<Message>> messages = sms.getMessageByTopic(TOPIC, date.getTime());
+		assertEquals(1, messages.size());
+		assertEquals(1, messages.get(0).size());
 		sms.deleteMessage(USER_NAME, PREDECESSOR);
+		messages = sms.getMessageByTopic(TOPIC, date.getTime());
+		assertEquals(0, messages.size());
 		//TODO verify that there are no messages anymore
 	}
 
