@@ -40,11 +40,10 @@ public class DeleteMessageTest extends TestShortMessageServiceInit {
 		//verify that there is message
 		List<List<Message>> messages = sms.getMessageByTopic(TOPIC, date.getTime());
 		assertEquals(1, messages.size());
-		assertEquals(1, messages.get(0).size());
+		assertEquals(2, messages.get(0).size());
 		sms.deleteMessage(USER_NAME, PREDECESSOR);
 		messages = sms.getMessageByTopic(TOPIC, date.getTime());
 		assertEquals(0, messages.size());
-		//TODO verify that there are no messages anymore
 	}
 
 	@Test(expected = IllegalArgumentException.class)

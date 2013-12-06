@@ -31,6 +31,7 @@ public class GetMessageByTopicTest {
 	  c.set(Calendar.SECOND, 0);
 	  c.set(Calendar.MILLISECOND, 0);
 	  d = c.getTime();
+	  //TODO verwende Konstanten (mind.) wenn namen mehrfach vorkommen
 	  sms.createUser("user1", "berlin");
 	  sms.createTopic("user1", "topic1");
 	  sms.createTopic("user1", "topic2");

@@ -8,6 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+//TODO User (user1) erzeugen mit new
 public class CreateUserTest extends TestShortMessageServiceInit {
 
 	// /////////////////////////////////////////////////////
@@ -15,8 +16,8 @@ public class CreateUserTest extends TestShortMessageServiceInit {
 	// /////////////////////////////////////////////////////
 	
 	//private ShortMessageService sms;
-	private String USER_NAME = "user1";
-	private String USER_CITY = "irgendwo";
+	private String USER_NAME = "user1";	//TODO Keine Konstanten (kein final)
+	private String USER_CITY = "irgendwo";	//TODO Konstanten in TestShortMessageServiceInit.class
 	private User user1;
 	
 	@Before
