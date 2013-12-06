@@ -1,5 +1,9 @@
 package de.htw_berlin.f4.ai.kbe.kurznachrichten;
 
+import static org.junit.Assert.*;
+
+import java.util.Set;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,50 +15,64 @@ public class CreateUserTest extends TestShortMessageServiceInit {
 	// /////////////////////////////////////////////////////
 	
 	//private ShortMessageService sms;
-	private String user = "user1";
+	private String USER_NAME = "user1";
+	private String USER_CITY = "irgendwo";
+	private User user1;
 	
 	@Before
 	public void initialize(){
-		sms.createUser(user, "berlin");
+		sms.createUser(USER_NAME, USER_CITY);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void createUserTestNameAlreadyExists(){
-		sms.createUser(user, "irgendwo");
+		sms.createUser(USER_NAME, USER_CITY);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void createUserTestNameTooLong(){
-		sms.createUser(STR_LENGTH_31, "irgendwo");
+		sms.createUser(STR_LENGTH_31, USER_CITY);
 	}
 	
 	@Test
 	public void createUserTestNameNotTooLong(){
-		sms.createUser(STR_LENGTH_30, "irgendwo");
+		sms.createUser(STR_LENGTH_30, USER_CITY);
+		user1.setName(STR_LENGTH_30);
+		user1.setCity(USER_CITY);
+		Set<User> users = sms.getUsers();
+		if(!users.contains(user1)){
+			fail("User with a name length of 30 characters should have been created, but wasn't.");
+		}
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void createUserTestNameTooShort(){
-		sms.createUser(STR_LENGTH_3, "irgendwo");
+		sms.createUser(STR_LENGTH_3, USER_CITY);
 	}
 	
 	@Test
 	public void createUserTestNameNotTooShort(){
-		sms.createUser(STR_LENGTH_4, "irgendwo");
+		sms.createUser(STR_LENGTH_4, USER_CITY);
+		user1.setName(STR_LENGTH_4);
+		user1.setCity(USER_CITY);
+		Set<User> users = sms.getUsers();
+		if(!users.contains(user1)){
+			fail("User with a name length of 4 characters should have been created, but wasn't.");
+		}
 	}
 	
 	@Test (expected = NullPointerException.class)
 	public void createUserTestNameNull(){
-		sms.createUser(null, "irgendwo");
+		sms.createUser(null, USER_CITY);
 	}
 	
 	@Test (expected = NullPointerException.class)
 	public void createUserTestCityNull(){
-		sms.createUser(user, null);
+		sms.createUser(USER_NAME, null);
 	}
 	
 	@After
 	public void cleanUp(){
-		sms.deleteUser(user);
+		sms.deleteUser(USER_NAME);
 	}
 }
