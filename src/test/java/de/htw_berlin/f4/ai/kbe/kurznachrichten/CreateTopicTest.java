@@ -50,6 +50,7 @@ public class CreateTopicTest extends TestShortMessageServiceInit {
 	@Test
 	public void createTopicTestValidArguments() {
 		sms.createTopic(USER_NAME, TOPIC_NOT_EXISTING);
+		//topics mit den str-längen 70 und 2 könnten getestet werden
 		//verify that topic exists
 		Set<String> topics = sms.getTopics();
 		boolean created = false;

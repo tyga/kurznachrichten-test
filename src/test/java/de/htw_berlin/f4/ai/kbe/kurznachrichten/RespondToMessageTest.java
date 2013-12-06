@@ -4,7 +4,7 @@ import org.junit.After;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-
+//TODO "Die Nachricht ist automatisch dem Topic des Vorgängers zugeordnet." muss getestet werden
 public class RespondToMessageTest extends TestShortMessageServiceInit {
 
 	private Long PREDECESSOR;
@@ -33,6 +33,7 @@ public class RespondToMessageTest extends TestShortMessageServiceInit {
 	@Test
 	public void respondToMessageTestValidArguments() {
 		Long msgId = sms.respondToMessage(USER_NAME, "Response", PREDECESSOR);
+		//messages mit den Längen der Grenzen (255, 10) könnten getestet werden
 		assertNotNull(msgId);
 	}
 	

@@ -34,6 +34,7 @@ public class CreateMessageTest extends TestShortMessageServiceInit {
 		// creating user before
 		Long id1 = sms.createMessage(USER_NAME, STR_LENGTH_255, TOPIC);
 		Long id2 = sms.createMessage(USER_NAME, MESSAGE_VALID2, TOPIC);
+		// message mit der Länge 10 (untere Grenze) könnte noch überprüft werden
 		assertNotNull(id1);
 		assertNotNull(id2);
 	}
