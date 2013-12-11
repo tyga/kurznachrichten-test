@@ -18,9 +18,6 @@ public class GetMessageByTopicTest extends TestShortMessageServiceInit {
 	// /////////////////////////////////////////////////////
 	
 	private static final String THIS_TOPIC_DOES_NOT_HAVE_ANY_MESSAGES = "thisTopicDoesNotHaveAnyMessages";
-	private static final String MESSAGE_VALID3 = "This is another valid message";
-	private static final String MESSAGE_VALID4 = "This is also a valid message";
-	private static final String TOPIC2 = "topic2";
 	private Date d;
 	
 	@Before

@@ -15,8 +15,7 @@ public class GetUsersTest extends TestShortMessageServiceInit {
 	// getUsersTests
 	// /////////////////////////////////////////////////////
 	
-	private static final String USER_NAME2 = "user2";
-	private static final String USER_NAME3 = "user3";
+	
 	private Set<User> users;
 	private User user1;
 	private User user2;

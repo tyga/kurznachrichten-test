@@ -15,8 +15,7 @@ public class GetTopicsTest extends TestShortMessageServiceInit {
 	// getTopicsTests
 	// /////////////////////////////////////////////////////
 
-	private static final String TOPIC2 = "topic2";
-	private static final String TOPIC3 = "topic3";
+	
 
 	@Before
 	@Override

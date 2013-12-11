@@ -14,10 +14,7 @@ import org.junit.Test;
 
 public class CreateTopicTest extends TestShortMessageServiceInit {
 
-	public static final String STR_LENGTH_71 = "THIS TOPIC IS TOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO LONG";
-	public static final String STR_LENGTH_70 = "THIS TOPIC IS SOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO LONG";
-	public static final String STR_LENGTH_2 = "TH";
-	public static final String STR_LENGTH_1 = "T";
+	
 
 
 	// /////////////////////////////////////////////////////
