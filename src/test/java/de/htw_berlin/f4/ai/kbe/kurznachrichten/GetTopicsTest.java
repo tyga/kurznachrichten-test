@@ -9,29 +9,31 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class GetTopicsTest {
+public class GetTopicsTest extends TestShortMessageServiceInit {
 	
 	// /////////////////////////////////////////////////////
 	// getTopicsTests
 	// /////////////////////////////////////////////////////
-	
-	private ShortMessageService sms;
-	
+
+	private static final String TOPIC2 = "topic2";
+	private static final String TOPIC3 = "topic3";
+
 	@Before
-	public void initialize(){
+	@Override
+	public void setUp(){
 		sms = new ShortMessageServiceImpl();
-		sms.createUser("user1", "berlin");
+		sms.createUser(USER_NAME, CITY);
 	}
 	
 	@Test
 	public void getTopicsTestCorrectTopics(){
-		sms.createTopic("user1", "topic1");
-		sms.createTopic("user1", "topic2");
-		sms.createTopic("user1", "topic3");
+		sms.createTopic(USER_NAME, TOPIC);
+		sms.createTopic(USER_NAME, TOPIC2);
+		sms.createTopic(USER_NAME, TOPIC3);
 		Set<String> topics = new HashSet<String>();
-		topics.add("topic1");
-		topics.add("topic2");
-		topics.add("topic3");
+		topics.add(TOPIC);
+		topics.add(TOPIC2);
+		topics.add(TOPIC3);
 		assertNotNull(sms.getTopics());
 		assertEquals(topics, sms.getTopics());
 	}
@@ -45,6 +47,7 @@ public class GetTopicsTest {
 	
 	@After
 	public void cleanUp(){
-		sms.deleteUser("user1");
+		sms.deleteUser(USER_NAME);
+		super.tearDown();
 	}
 }
