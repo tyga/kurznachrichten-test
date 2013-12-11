@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,7 +15,7 @@ public class DeleteUserTest extends TestShortMessageServiceInit {
 	// deleteUserTests
 	// /////////////////////////////////////////////////////
 	
-	private Set<User> users;
+	private Set<User> users = new HashSet<User>();
 	private User user1;
 	private User user2;
 	private User user3;
@@ -23,7 +24,7 @@ public class DeleteUserTest extends TestShortMessageServiceInit {
 	@Override
 	public void setUp(){
 		super.setUp();
-		users = new HashSet<User>();
+//		users = new HashSet<User>();
 		sms.createUser(USER_NAME2, CITY);
 		sms.createUser(USER_NAME3, CITY);
 		user1.setName(USER_NAME);
@@ -66,14 +67,12 @@ public class DeleteUserTest extends TestShortMessageServiceInit {
 		assertEquals(users, sms.getUsers());
 	}
 	
-	@Test
+	@After
 	public void cleanUp(){
 		sms.deleteUser(USER_NAME);
 		sms.deleteUser(USER_NAME2);
 		sms.deleteUser(USER_NAME3);
-		users.remove(user1);
-		users.remove(user2);
-		users.remove(user3);
+		users.clear();
 		super.tearDown();
 		}
 }

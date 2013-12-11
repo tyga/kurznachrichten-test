@@ -24,6 +24,7 @@ public class RespondToMessageTest extends TestShortMessageServiceInit {
 		super.setUp();
 		date = Calendar.getInstance();
 		PREDECESSOR = sms.createMessage(USER_NAME, MESSAGE_VALID2, TOPIC);
+		assertNotNull(PREDECESSOR);
 	}
 
 	@After
