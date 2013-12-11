@@ -1,6 +1,9 @@
 package de.htw_berlin.f4.ai.kbe.kurznachrichten;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
+
+import java.util.Calendar;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -31,12 +34,21 @@ public class CreateMessageTest extends TestShortMessageServiceInit {
 
 	@Test
 	public void createMessageTestValidArguments() {
-		// creating user before
+
+		Calendar c = Calendar.getInstance();
 		Long id1 = sms.createMessage(USER_NAME, STR_LENGTH_255, TOPIC);
 		Long id2 = sms.createMessage(USER_NAME, MESSAGE_VALID2, TOPIC);
-		// message mit der Länge 10 (untere Grenze) könnte noch überprüft werden
+		Long id3 = sms.createMessage(USER_NAME, STR_LENGTH_10, TOPIC);
+
 		assertNotNull(id1);
 		assertNotNull(id2);
+		assertNotNull(id3);
+		
+		List<List<Message>> msgs = sms.getMessageByTopic(TOPIC, c.getTime());
+		assertEquals(3, msgs.size());
+//		assertEquals(STR_LENGTH_255, msgs.get(0).get(0).getContent());
+//		assertEquals(MESSAGE_VALID2, msgs.get(1).get(0).getContent());
+//		assertEquals(STR_LENGTH_10, msgs.get(2).get(0).getContent());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
