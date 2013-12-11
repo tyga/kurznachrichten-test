@@ -1,13 +1,18 @@
 package de.htw_berlin.f4.ai.kbe.kurznachrichten;
 
-import org.junit.After;
 import static org.junit.Assert.*;
+
+import java.util.Calendar;
+import java.util.List;
+
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 //TODO "Die Nachricht ist automatisch dem Topic des Vorgängers zugeordnet." muss getestet werden
 public class RespondToMessageTest extends TestShortMessageServiceInit {
 
 	private Long PREDECESSOR;
+	private Calendar date;
 	
 	// /////////////////////////////////////////////////////
 	// setup and tear down
@@ -17,6 +22,7 @@ public class RespondToMessageTest extends TestShortMessageServiceInit {
 	@Override
 	public void setUp() {
 		super.setUp();
+		date = Calendar.getInstance();
 		PREDECESSOR = sms.createMessage(USER_NAME, MESSAGE_VALID2, TOPIC);
 	}
 	
@@ -32,9 +38,18 @@ public class RespondToMessageTest extends TestShortMessageServiceInit {
 	
 	@Test
 	public void respondToMessageTestValidArguments() {
-		Long msgId = sms.respondToMessage(USER_NAME, "Response", PREDECESSOR);
-		//messages mit den Längen der Grenzen (255, 10) könnten getestet werden
-		assertNotNull(msgId);
+		Long msgId1 = sms.respondToMessage(USER_NAME, "Response", PREDECESSOR);
+		Long msgId2 = sms.respondToMessage(USER_NAME, STR_LENGTH_255, PREDECESSOR);
+		Long msgId3 = sms.respondToMessage(USER_NAME, STR_LENGTH_10, PREDECESSOR);
+		assertNotNull(msgId1);
+		assertNotNull(msgId2);
+		assertNotNull(msgId3);
+		
+		List<List<Message>> msgs = sms.getMessageByTopic(TOPIC, date.getTime());
+		for (Message msg : msgs.get(0)) {
+			assertEquals(TOPIC, msg.getTopic());
+		}
+		
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
