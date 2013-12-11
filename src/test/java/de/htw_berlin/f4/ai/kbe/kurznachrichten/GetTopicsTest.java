@@ -15,8 +15,6 @@ public class GetTopicsTest extends TestShortMessageServiceInit {
 	// getTopicsTests
 	// /////////////////////////////////////////////////////
 
-	
-
 	@Before
 	@Override
 	public void setUp(){
@@ -34,6 +32,8 @@ public class GetTopicsTest extends TestShortMessageServiceInit {
 		topics.add(TOPIC2);
 		topics.add(TOPIC3);
 		assertNotNull(sms.getTopics());
+		assertTrue(topics.containsAll(sms.getTopics()));
+		assertTrue(sms.getTopics().containsAll(topics));
 		assertEquals(topics, sms.getTopics());
 	}
 	
@@ -41,6 +41,8 @@ public class GetTopicsTest extends TestShortMessageServiceInit {
 	public void getTopicsTestNoTopicsExist(){
 		Set<String> topics = new HashSet<String>();
 		assertNotNull(sms.getTopics());
+		assertTrue(topics.containsAll(sms.getTopics()));
+		assertTrue(sms.getTopics().containsAll(topics));
 		assertEquals(topics, sms.getTopics());
 	}
 	

@@ -47,14 +47,19 @@ public class DeleteUserTest extends TestShortMessageServiceInit {
 		int before_delete;
 		int after_delete;
 		before_delete = sms.getUsers().size();
+		assertTrue(sms.getUsers().contains(USER_NAME));
 		sms.deleteUser(USER_NAME);
+		assertFalse(sms.getUsers().contains(USER_NAME));
 		after_delete = sms.getUsers().size();
 		assertEquals(3, before_delete);
 		assertEquals(2, after_delete);
+		
 	}
 	
 	@Test
 	public void deleteUserTestCorrectUserIsDeleted(){
+		assertTrue(users.containsAll(sms.getUsers()));
+		assertTrue(sms.getUsers().containsAll(users));
 		assertEquals(users, sms.getUsers());
 		sms.deleteUser(USER_NAME3);
 		users.remove(user3);

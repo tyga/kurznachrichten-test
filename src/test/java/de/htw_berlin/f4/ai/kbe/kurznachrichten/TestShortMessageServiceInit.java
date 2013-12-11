@@ -83,6 +83,8 @@ public class TestShortMessageServiceInit {
 		assertEquals(err_msg, 9, STR_LENGTH_9.length());
 		assertEquals(err_msg, 4, STR_LENGTH_4.length());
 		assertEquals(err_msg, 3, STR_LENGTH_3.length());
+		assertEquals(err_msg, 2, STR_LENGTH_2.length());
+		assertEquals(err_msg, 1, STR_LENGTH_1.length());
 	}
 
 	@AfterClass

@@ -47,12 +47,16 @@ public class GetUsersTest extends TestShortMessageServiceInit {
 		users.add(user3);
 		assertNotNull(sms.getUsers());
 		assertEquals(users, sms.getUsers());
+		assertTrue(users.containsAll(sms.getUsers()));
+		assertTrue(sms.getUsers().containsAll(users));
+		assertArrayEquals(users.toArray(), sms.getUsers().toArray());
 	}
 	
 	@Test
 	public void getUsersTestThereAreNoUsers(){
 		assertNotNull(sms.getUsers());
-		assertEquals(users, sms.getUsers());
+		assertEquals(0, sms.getUsers().size());
+//		assertEquals(users, sms.getUsers());
 	}
 	
 	@After
