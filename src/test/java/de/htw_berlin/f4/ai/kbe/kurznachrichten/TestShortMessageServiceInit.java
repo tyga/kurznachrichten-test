@@ -42,7 +42,7 @@ public class TestShortMessageServiceInit {
 
 	@After
 	public void tearDown() {
-
+		sms = null;
 	}
 
 	@BeforeClass
