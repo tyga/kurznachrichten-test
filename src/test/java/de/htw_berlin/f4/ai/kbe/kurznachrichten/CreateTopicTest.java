@@ -42,6 +42,7 @@ public class CreateTopicTest extends TestShortMessageServiceInit {
 
 		//verify that topic exists
 		Set<String> topics = sms.getTopics();
+		assertNotNull(topics);
 		assertTrue(topics.contains(TOPIC_NOT_EXISTING));
 		assertTrue(topics.contains(STR_LENGTH_70));
 		assertTrue(topics.contains(STR_LENGTH_2));

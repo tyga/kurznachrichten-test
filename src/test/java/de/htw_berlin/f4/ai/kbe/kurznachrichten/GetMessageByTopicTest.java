@@ -11,6 +11,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+//TODO add messages to topic BEFORE time!!!
+//TODO type is not List<List<String>> -> List<List<Message>> !!!
 public class GetMessageByTopicTest extends TestShortMessageServiceInit {
 
 	// /////////////////////////////////////////////////////
@@ -24,22 +26,22 @@ public class GetMessageByTopicTest extends TestShortMessageServiceInit {
 	@Override
 	public void setUp(){
 		super.setUp();
-		Calendar c = Calendar.getInstance();
-		c.set(Calendar.YEAR, 2013);
-		c.set(Calendar.MONTH, Calendar.JANUARY);
-		c.set(Calendar.DAY_OF_MONTH, 1);
-		c.set(Calendar.HOUR_OF_DAY, 10);
-		c.set(Calendar.MINUTE, 0);
-		c.set(Calendar.SECOND, 0);
-		c.set(Calendar.MILLISECOND, 0);
-		d = c.getTime();
-		sms.createTopic(USER_NAME, TOPIC2);
-		sms.createMessage(USER_NAME, MESSAGE_VALID1, TOPIC);
+//		Calendar c = Calendar.getInstance();
+//		c.set(Calendar.YEAR, 2013);
+//		c.set(Calendar.MONTH, Calendar.JANUARY);
+//		c.set(Calendar.DAY_OF_MONTH, 1);
+//		c.set(Calendar.HOUR_OF_DAY, 10);
+//		c.set(Calendar.MINUTE, 0);
+//		c.set(Calendar.SECOND, 0);
+//		c.set(Calendar.MILLISECOND, 0);
+		d = Calendar.getInstance().getTime();
 		try {
 			Thread.sleep(2);
 		} catch (InterruptedException e) {
 			fail(e.getMessage());
 		}
+		sms.createTopic(USER_NAME, TOPIC2);
+		sms.createMessage(USER_NAME, MESSAGE_VALID1, TOPIC);
 		sms.createMessage(USER_NAME, MESSAGE_VALID2, TOPIC);
 		sms.createMessage(USER_NAME, MESSAGE_VALID3, TOPIC2);
 	}
@@ -67,10 +69,12 @@ public class GetMessageByTopicTest extends TestShortMessageServiceInit {
 		threads1.add(message1);
 		threads1.add(message2);
 		threads2.add(message3);
-		assertNotNull(sms.getMessageByTopic(TOPIC, d));
-		assertEquals(threads1, sms.getMessageByTopic(TOPIC, d));
-		assertNotNull(sms.getMessageByTopic(TOPIC2, d));
-		assertEquals(threads1, sms.getMessageByTopic(TOPIC2, d));
+		List<List<Message>> msgT = sms.getMessageByTopic(TOPIC, d);
+		assertNotNull(msgT);
+		assertEquals(threads1, msgT);
+		List<List<Message>> msgT2 = sms.getMessageByTopic(TOPIC2, d);
+		assertNotNull(msgT2);
+		assertEquals(threads1, msgT2);
 	}
 	
 	@Test

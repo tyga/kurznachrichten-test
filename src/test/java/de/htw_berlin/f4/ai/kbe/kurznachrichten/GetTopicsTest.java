@@ -31,19 +31,21 @@ public class GetTopicsTest extends TestShortMessageServiceInit {
 		topics.add(TOPIC);
 		topics.add(TOPIC2);
 		topics.add(TOPIC3);
-		assertNotNull(sms.getTopics());
-		assertTrue(topics.containsAll(sms.getTopics()));
-		assertTrue(sms.getTopics().containsAll(topics));
-		assertEquals(topics, sms.getTopics());
+		Set<String> getted = sms.getTopics();
+		assertNotNull(getted);
+//		assertTrue(topics.containsAll(getted));
+//		assertTrue(getted.containsAll(topics));
+		assertEquals(topics, getted);
 	}
 	
 	@Test
 	public void getTopicsTestNoTopicsExist(){
 		Set<String> topics = new HashSet<String>();
-		assertNotNull(sms.getTopics());
-		assertTrue(topics.containsAll(sms.getTopics()));
-		assertTrue(sms.getTopics().containsAll(topics));
-		assertEquals(topics, sms.getTopics());
+		Set<String> getted = sms.getTopics();
+		assertNotNull(getted);
+//		assertTrue(topics.containsAll(getted));
+//		assertTrue(getted.containsAll(topics));
+		assertEquals(topics, getted);
 	}
 	
 	@After

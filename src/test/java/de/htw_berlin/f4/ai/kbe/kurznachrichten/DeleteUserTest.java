@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class DeleteUserTest extends TestShortMessageServiceInit {
@@ -15,18 +16,20 @@ public class DeleteUserTest extends TestShortMessageServiceInit {
 	// deleteUserTests
 	// /////////////////////////////////////////////////////
 	
-	private Set<User> users = new HashSet<User>();
-	private User user1;
-	private User user2;
-	private User user3;
+	private final Set<User> users = new HashSet<User>();
+	private final User user1 = new User();
+	private final User user2 = new User();
+	private final User user3 = new User();
+	
 	
 	@Before
 	@Override
 	public void setUp(){
 		super.setUp();
-//		users = new HashSet<User>();
+		sms.createUser(USER_NAME, CITY); // ADDED ???
 		sms.createUser(USER_NAME2, CITY);
 		sms.createUser(USER_NAME3, CITY);
+
 		user1.setName(USER_NAME);
 		user1.setCity(CITY);
 		user2.setName(USER_NAME2);
@@ -45,26 +48,35 @@ public class DeleteUserTest extends TestShortMessageServiceInit {
 	
 	@Test
 	public void deleteUserTestAUserIsDeleted(){
-		int before_delete;
-		int after_delete;
-		before_delete = sms.getUsers().size();
-		assertTrue(sms.getUsers().contains(USER_NAME));
+		
+		Set<User> us = sms.getUsers();
+		assertNotNull(us);
+		int before_delete = us.size();
+		assertTrue(us.contains(user1)); //contains User.class not String
 		sms.deleteUser(USER_NAME);
-		assertFalse(sms.getUsers().contains(USER_NAME));
-		after_delete = sms.getUsers().size();
+		//verify delete operation
+		us = sms.getUsers();
+		assertNotNull(us);
+		assertFalse(us.contains(user1)); //contains USer.class not String
+		int after_delete = us.size();
+		
 		assertEquals(3, before_delete);
 		assertEquals(2, after_delete);
-		
 	}
 	
 	@Test
 	public void deleteUserTestCorrectUserIsDeleted(){
-		assertTrue(users.containsAll(sms.getUsers()));
-		assertTrue(sms.getUsers().containsAll(users));
-		assertEquals(users, sms.getUsers());
+		Set<User> getted = sms.getUsers();
+		assertNotNull(getted);
+//		assertTrue(users.containsAll(getted));
+//		assertTrue(getted.containsAll(users));
+		assertEquals(users, getted);
 		sms.deleteUser(USER_NAME3);
+		//verify after delete operation
 		users.remove(user3);
-		assertEquals(users, sms.getUsers());
+		getted = sms.getUsers();
+		assertNotNull(getted);
+		assertEquals(users, getted);
 	}
 	
 	@After

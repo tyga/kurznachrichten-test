@@ -11,7 +11,7 @@ import org.junit.Test;
 public class DeleteMessageTest extends TestShortMessageServiceInit {
 
 	private Long PREDECESSOR;
-	private Calendar date = Calendar.getInstance();
+	private final Calendar date = Calendar.getInstance();
 
 	// /////////////////////////////////////////////////////
 	// setup and tear down
@@ -22,6 +22,7 @@ public class DeleteMessageTest extends TestShortMessageServiceInit {
 	public void setUp() {
 		super.setUp();
 		PREDECESSOR = sms.createMessage(USER_NAME, MESSAGE_VALID2, TOPIC);
+		assertNotNull(PREDECESSOR);
 	}
 
 	@After
@@ -39,8 +40,11 @@ public class DeleteMessageTest extends TestShortMessageServiceInit {
 		sms.respondToMessage(USER_NAME, "This is a response...", PREDECESSOR);
 		//verify that there is message
 		List<List<Message>> messages = sms.getMessageByTopic(TOPIC, date.getTime());
+		assertNotNull(messages);
 		assertEquals(1, messages.size());
-		assertEquals(2, messages.get(0).size());
+		List<Message> msg = messages.get(0);
+		assertNotNull(msg);
+		assertEquals(2, msg.size());
 		sms.deleteMessage(USER_NAME, PREDECESSOR);
 		messages = sms.getMessageByTopic(TOPIC, date.getTime());
 		assertEquals(0, messages.size());
@@ -82,6 +86,7 @@ public class DeleteMessageTest extends TestShortMessageServiceInit {
 		sms.createUser(newUser, "NewCity");
 		Long newMessId = sms.createMessage(newUser, "This is another message", TOPIC);
 		//verify 
+		assertNotNull(newMessId);
 		assertNotEquals(newMessId, PREDECESSOR);
 		sms.deleteMessage(newUser, PREDECESSOR);
 	}

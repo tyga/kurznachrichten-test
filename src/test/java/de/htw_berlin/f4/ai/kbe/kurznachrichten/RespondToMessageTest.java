@@ -50,6 +50,7 @@ public class RespondToMessageTest extends TestShortMessageServiceInit {
 
 		List<List<Message>> msgs = sms.getMessageByTopic(TOPIC, date.getTime());
 		for (Message msg : msgs.get(0)) {
+			assertNotNull(msg);
 			assertEquals(TOPIC, msg.getTopic());
 		}
 

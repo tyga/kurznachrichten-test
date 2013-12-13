@@ -16,19 +16,15 @@ public class GetUsersTest extends TestShortMessageServiceInit {
 	// /////////////////////////////////////////////////////
 	
 	
-	private Set<User> users;
-	private User user1;
-	private User user2;
-	private User user3;
+	private final Set<User> users = new HashSet<User>();
+	private final User user1 = new User();
+	private final User user2 = new User();
+	private final User user3 = new User();
 	
 	@Before
 	@Override
 	public void setUp(){
 		sms = new ShortMessageServiceImpl();
-		users = new HashSet<User>();
-		user1 = new User();
-		user2 = new User();
-		user3 = new User();
 	}
 	
 	@Test
@@ -45,22 +41,24 @@ public class GetUsersTest extends TestShortMessageServiceInit {
 		users.add(user1);
 		users.add(user2);
 		users.add(user3);
-		assertNotNull(sms.getUsers());
-		assertEquals(users, sms.getUsers());
-		assertTrue(users.containsAll(sms.getUsers()));
-		assertTrue(sms.getUsers().containsAll(users));
-		assertArrayEquals(users.toArray(), sms.getUsers().toArray());
+		Set<User> getted = sms.getUsers();
+		assertNotNull(getted);
+		assertEquals(users, getted);
+//		assertTrue(users.containsAll(getted));
+//		assertTrue(getted.containsAll(users));
 	}
 	
 	@Test
 	public void getUsersTestThereAreNoUsers(){
-		assertNotNull(sms.getUsers());
-		assertEquals(0, sms.getUsers().size());
+		Set<User> getted = sms.getUsers();
+		assertNotNull(getted);
+		assertEquals(0, getted.size());
 //		assertEquals(users, sms.getUsers());
 	}
 	
 	@After
 	public void cleanUp(){
+		users.clear();
 		super.tearDown();
 	}
 }

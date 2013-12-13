@@ -14,14 +14,14 @@ public class CreateUserTest extends TestShortMessageServiceInit {
 	// createUserTests
 	// /////////////////////////////////////////////////////
 	
-	private User user1;
+	private User user1 = new User();
 	
-	@Before
-	@Override
-	public void setUp(){
-		super.setUp();
-		user1 = new User();
-	}
+//	@Before
+//	@Override
+//	public void setUp(){
+//		super.setUp();
+//		//user1 = new User();
+//	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void createUserTestNameAlreadyExists(){
@@ -39,9 +39,8 @@ public class CreateUserTest extends TestShortMessageServiceInit {
 		user1.setName(STR_LENGTH_30);
 		user1.setCity(CITY);
 		Set<User> users = sms.getUsers();
-		if(!users.contains(user1)){
-			fail("User with a name length of 30 characters should have been created, but wasn't.");
-		}
+		assertNotNull(users);
+		assertTrue(users.contains(user1));
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
@@ -55,9 +54,8 @@ public class CreateUserTest extends TestShortMessageServiceInit {
 		user1.setName(STR_LENGTH_4);
 		user1.setCity(CITY);
 		Set<User> users = sms.getUsers();
-		if(!users.contains(user1)){
-			fail("User with a name length of 4 characters should have been created, but wasn't.");
-		}
+		assertNotNull(users);
+		assertTrue(users.contains(user1));
 	}
 	
 	@Test (expected = NullPointerException.class)
@@ -70,9 +68,9 @@ public class CreateUserTest extends TestShortMessageServiceInit {
 		sms.createUser("UserName", null);
 	}
 	
-	@After
-	public void cleanUp(){
-		sms.deleteUser(USER_NAME);
-		super.tearDown();
-	}
+//	@After
+//	public void cleanUp(){
+//		sms.deleteUser(USER_NAME);
+//		super.tearDown();
+//	}
 }

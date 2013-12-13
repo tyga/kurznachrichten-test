@@ -45,6 +45,7 @@ public class CreateMessageTest extends TestShortMessageServiceInit {
 		assertNotNull(id3);
 		
 		List<List<Message>> msgs = sms.getMessageByTopic(TOPIC, c.getTime());
+		assertNotNull(msgs);
 		assertEquals(3, msgs.size());
 //		assertEquals(STR_LENGTH_255, msgs.get(0).get(0).getContent());
 //		assertEquals(MESSAGE_VALID2, msgs.get(1).get(0).getContent());
