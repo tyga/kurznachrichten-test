@@ -30,6 +30,10 @@ public class RespondToMessageTest extends TestShortMessageServiceInit {
 	@After
 	@Override
 	public void tearDown() {
+		try {
+			sms.deleteMessage(USER_NAME, PREDECESSOR);
+		} catch (AuthorizationException e) {
+		}
 		super.tearDown();
 	}
 

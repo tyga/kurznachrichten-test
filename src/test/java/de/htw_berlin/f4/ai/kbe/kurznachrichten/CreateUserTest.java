@@ -26,11 +26,15 @@ public class CreateUserTest extends TestShortMessageServiceInit {
 	@Test (expected = IllegalArgumentException.class)
 	public void createUserTestNameAlreadyExists(){
 		sms.createUser(USER_NAME, CITY);
+		//cleanup if no exception is thrown
+		sms.deleteUser(USER_NAME);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void createUserTestNameTooLong(){
 		sms.createUser(STR_LENGTH_31, CITY);
+		//cleanup if no exception is thrown
+		sms.deleteUser(STR_LENGTH_31);
 	}
 	
 	@Test
@@ -41,11 +45,15 @@ public class CreateUserTest extends TestShortMessageServiceInit {
 		Set<User> users = sms.getUsers();
 		assertNotNull(users);
 		assertTrue(users.contains(user1));
+		//cleanup
+		sms.deleteUser(STR_LENGTH_30);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void createUserTestNameTooShort(){
 		sms.createUser(STR_LENGTH_3, CITY);
+		//cleanup if no exception is thrown
+		sms.deleteUser(STR_LENGTH_3);
 	}
 	
 	@Test
@@ -56,6 +64,8 @@ public class CreateUserTest extends TestShortMessageServiceInit {
 		Set<User> users = sms.getUsers();
 		assertNotNull(users);
 		assertTrue(users.contains(user1));
+		//cleanup
+		sms.deleteUser(STR_LENGTH_4);
 	}
 	
 	@Test (expected = NullPointerException.class)
@@ -66,6 +76,8 @@ public class CreateUserTest extends TestShortMessageServiceInit {
 	@Test (expected = NullPointerException.class)
 	public void createUserTestCityNull(){
 		sms.createUser("UserName", null);
+		//cleanup if no exception is thrown
+		sms.deleteUser("UserName");
 	}
 	
 //	@After

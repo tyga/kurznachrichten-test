@@ -1,34 +1,37 @@
 package de.htw_berlin.f4.ai.kbe.kurznachrichten;
 
 import static org.junit.Assert.*;
+import static de.htw_berlin.f4.ai.kbe.kurznachrichten.TestShortMessageServiceInit.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class GetUsersTest extends TestShortMessageServiceInit {
+public class GetUsersTest {
 
 	// /////////////////////////////////////////////////////
 	// getUsersTests
 	// /////////////////////////////////////////////////////
-	
-	
+
 	private final Set<User> users = new HashSet<User>();
 	private final User user1 = new User();
 	private final User user2 = new User();
 	private final User user3 = new User();
 	
+	private ShortMessageService sms;
+
 	@Before
-	@Override
-	public void setUp(){
+	public void setUp() {
 		sms = new ShortMessageServiceImpl();
 	}
-	
+
 	@Test
-	public void getUsersTestReturnsCorrectListOfUsers(){
+	public void getUsersTestReturnsCorrectListOfUsers() {
 		sms.createUser(USER_NAME, CITY);
 		sms.createUser(USER_NAME2, CITY);
 		sms.createUser(USER_NAME3, CITY);
@@ -44,21 +47,24 @@ public class GetUsersTest extends TestShortMessageServiceInit {
 		Set<User> getted = sms.getUsers();
 		assertNotNull(getted);
 		assertEquals(users, getted);
-//		assertTrue(users.containsAll(getted));
-//		assertTrue(getted.containsAll(users));
+		// cleanup
+		try {
+			sms.deleteUser(USER_NAME);
+			sms.deleteUser(USER_NAME2);
+			sms.deleteUser(USER_NAME3);
+		} catch (IllegalArgumentException e) {
+		}
 	}
-	
+
 	@Test
-	public void getUsersTestThereAreNoUsers(){
+	public void getUsersTestThereAreNoUsers() {
 		Set<User> getted = sms.getUsers();
 		assertNotNull(getted);
 		assertEquals(0, getted.size());
-//		assertEquals(users, sms.getUsers());
 	}
-	
+
 	@After
-	public void cleanUp(){
+	public void cleanUp() {
 		users.clear();
-		super.tearDown();
 	}
 }

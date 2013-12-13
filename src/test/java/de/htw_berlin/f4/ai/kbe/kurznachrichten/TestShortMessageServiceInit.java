@@ -9,13 +9,11 @@ import org.junit.BeforeClass;
 
 public class TestShortMessageServiceInit {
 
-	
 	public static final String MESSAGE_VALID1 = "message content";
 	public static final String MESSAGE_VALID2 = "this is a valid message";
 	public static final String MESSAGE_VALID3 = "This is another valid message";
 	public static final String MESSAGE_VALID4 = "This is also a valid message";
 
-	
 	public static final String USER_NAME = "kinmin";
 	public static final String USER_NAME2 = "user2";
 	public static final String USER_NAME3 = "user3";
@@ -52,6 +50,10 @@ public class TestShortMessageServiceInit {
 
 	@After
 	public void tearDown() {
+		try {
+			sms.deleteUser(USER_NAME);
+		} catch (IllegalArgumentException e) {
+		}
 		sms = null;
 	}
 
@@ -67,7 +69,7 @@ public class TestShortMessageServiceInit {
 		STR_LENGTH_9 = stringCreator(9);
 		STR_LENGTH_4 = stringCreator(4);
 		STR_LENGTH_3 = stringCreator(3);
-		
+
 		String err_msg = "SETUP_ERROR__ Invalid string length!";
 
 		// verify strings
