@@ -65,7 +65,7 @@ public class GetMessageByTopicTest extends TestShortMessageServiceInit {
 		assertNotNull(msgT.get(0).get(0));
 		assertEquals(TOPIC, msgT.get(0).get(0).getTopic());
 		assertNotNull(msgT.get(0).get(1));
-		assertEquals(TOPIC, msgT.get(0).get(1));
+		assertEquals(TOPIC, msgT.get(0).get(1).getTopic());
 		assertNotNull(msgT.get(1));
 		assertNotNull(msgT.get(1).get(0));
 		assertEquals(TOPIC, msgT.get(1).get(0).getTopic());
@@ -157,8 +157,10 @@ public class GetMessageByTopicTest extends TestShortMessageServiceInit {
 	}
 	
 	@After
-	public void cleanUp(){
+	@Override
+	public void tearDown() {
 		sms.deleteUser(USER_NAME);
 		super.tearDown();
 	}
+
 }
