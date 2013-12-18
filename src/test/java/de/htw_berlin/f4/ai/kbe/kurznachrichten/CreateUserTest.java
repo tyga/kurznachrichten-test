@@ -80,6 +80,21 @@ public class CreateUserTest extends TestShortMessageServiceInit {
 		sms.deleteUser("UserName");
 	}
 	
+	@Test
+	public void createUserTestUserWasAdded(){
+		Set<User> users = sms.getUsers();
+		assertNotNull(users);
+		int beforeCreate = users.size();
+		sms.createUser(USER_NAME, CITY);
+		users = sms.getUsers();
+		assertNotNull(users);
+		int afterCreate = users.size();
+		assertEquals(0, beforeCreate);
+		assertEquals(1, afterCreate);
+		//cleanup
+		sms.deleteUser(USER_NAME);
+	}
+	
 //	@After
 //	public void cleanUp(){
 //		sms.deleteUser(USER_NAME);
